@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "author": "codeiator",
+  "version": "1.0.0",
+  "private": "true",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "serve": "node build/src/server.ts",
+    "start": "build && run serve "
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.7",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  }
+}
