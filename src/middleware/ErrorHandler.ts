@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { APIError } from '../util/ApiErrors';
+
 export default async (err: Error, req: Request, res: Response, next: NextFunction) => {
 	if (err instanceof APIError) {
 		return res.status(err.statusCode).json({
