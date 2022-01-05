@@ -10,6 +10,10 @@ export default {
 		token: process.env.JWT_TOKEN || getSecret('jwt') || generateSecret('jwt', 32),
 		config: { expiresIn: '90d' },
 	},
+	encryption: {
+		rounds: 12,
+		papper: process.env.PAPPER || getSecret('papper') || generateSecret('papper', 14),
+	},
 };
 
 function getSecret(filename: string) {
