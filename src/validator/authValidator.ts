@@ -1,8 +1,13 @@
 import * as Yup from 'yup';
 
 export const loginSchema = Yup.object({
-	email: Yup.string().email().lowercase().required(),
-	password: Yup.string().required(),
+	email: Yup.string()
+		.typeError('Az emailnek stringnek kell lennie')
+		.required('Email megadása kötelező')
+		.lowercase(),
+	password: Yup.string()
+		.typeError('A jelszónak stringnek kell lennie')
+		.required('Jelszó megadása kötelező'),
 });
 
 export type loginType = Yup.InferType<typeof loginSchema>;
