@@ -3,6 +3,7 @@ import config from '../config';
 import cors from 'cors';
 import routes from './routes/routes';
 import ErrorHandler from './middleware/ErrorHandler';
+import { createConnection } from 'typeorm';
 
 const app = express();
 
@@ -16,7 +17,15 @@ app.use(routes);
 // Error Handlers
 app.use(ErrorHandler);
 
-const PORT = config.port;
-app.listen(PORT, () => {
-	console.log('Server running on http://localhost:' + PORT);
-});
+const startServer = async () => {
+	// Database
+	await createConnection();
+
+	// API
+	const PORT = config.port;
+	app.listen(PORT, () => {
+		console.log('Server running on http://localhost:' + PORT);
+	});
+};
+
+startServer();
