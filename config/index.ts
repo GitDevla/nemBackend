@@ -5,7 +5,7 @@ import path from 'path/posix';
 config();
 
 export default {
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || 3001,
 	jwt: {
 		token: process.env.JWT_TOKEN || getSecret('jwt') || generateSecret('jwt', 32),
 		config: { expiresIn: '90d' },

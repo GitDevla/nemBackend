@@ -1,7 +1,5 @@
 import { User } from '../model/userModel';
-import bcrypt from 'bcrypt';
 import { registerType } from '../validator/userValidator';
-import config from '../../config';
 import { loginType } from '../validator/authValidator';
 
 export const validatePassword = async (data: loginType) => {
@@ -15,12 +13,9 @@ export const validatePassword = async (data: loginType) => {
 
 export const createUser = async (data: registerType) => {
 	const { email, username, password } = data;
-	const encryptedPass = await bcrypt.hash(
-		password + config.encryption.papper,
-		config.encryption.rounds,
-	);
 
-	const createdUser = User.create({ email, username, password: encryptedPass });
+	const createdUser = User.create({ email, username });
+	createdUser.setPassword(password);
 	createdUser.save();
 
 	return createdUser;
