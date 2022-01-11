@@ -4,7 +4,7 @@
 
 ```
 npm install
-pmx prisma db push
+npx prisma db push
 npm run dev
 ```
 
