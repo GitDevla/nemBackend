@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
-import { hashSync, compare } from 'bcrypt';
+import { compare, hashSync } from 'bcrypt';
 import { Exclude } from 'class-transformer';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import config from '../../config';
 
 @Entity()

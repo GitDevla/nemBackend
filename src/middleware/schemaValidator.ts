@@ -1,5 +1,5 @@
+import { NextFunction, Request, Response } from 'express';
 import * as Yup from 'yup';
-import { Request, Response, NextFunction } from 'express';
 import { InvalidParameter } from '../util/ApiErrors';
 
 const validateSchema = (schema: Yup.AnySchema) => {

@@ -1,11 +1,11 @@
-import express from 'express';
-import config from '../config';
-import cors from 'cors';
-import routes from './routes/routes';
-import ErrorHandler from './middleware/ErrorHandler';
-import { createConnection } from 'typeorm';
 import compression from 'compression';
+import cors from 'cors';
+import express from 'express';
 import helmet from 'helmet';
+import { createConnection } from 'typeorm';
+import config from '../config';
+import ErrorHandler from './middleware/ErrorHandler';
+import routes from './routes/routes';
 
 const app = express();
 

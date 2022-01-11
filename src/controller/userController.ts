@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { createUser, findUser } from '../service/userService';
 import { Conflict } from '../util/ApiErrors';
-import { registerType } from '../validator/userValidator';
 import responseWrapper from '../util/responseWrapper';
+import { registerType } from '../validator/userValidator';
 
 export const registerHandler = async (req: Request<{}, {}, registerType>, res: Response) => {
 	const existingUser = await findUser(req.body.email);

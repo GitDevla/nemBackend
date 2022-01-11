@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { APIError } from '../util/ApiErrors';
 
 export default async (err: Error, req: Request, res: Response, next: NextFunction) => {

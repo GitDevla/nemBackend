@@ -1,6 +1,6 @@
-import { User } from '../model/userModel';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
+import { User } from '../model/userModel';
 
 export const generateToken = async (user: User) => {
 	const token = jwt.sign({ userId: user.id }, config.jwt.token, config.jwt.config);
