@@ -4,11 +4,21 @@ import cors from 'cors';
 import routes from './routes/routes';
 import ErrorHandler from './middleware/ErrorHandler';
 import { createConnection } from 'typeorm';
+import compression from 'compression';
+import helmet from 'helmet';
 
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(helmet());
+app.use(
+	cors({
+		origin: ['http://localhost:3000'],
+		methods: ['GET', 'POST', 'PUT', 'REMOVE'],
+		allowedHeaders: ['Content-Type', 'Authorization'],
+	}),
+);
+app.use(compression());
 app.use(express.json());
 
 // Routes
@@ -18,14 +28,14 @@ app.use(routes);
 app.use(ErrorHandler);
 
 const startServer = async () => {
-	// Database
-	await createConnection();
+	const db = createConnection();
 
-	// API
 	const PORT = config.port;
-	app.listen(PORT, () => {
+	const api = app.listen(PORT, () => {
 		console.log('Server running on http://localhost:' + PORT);
 	});
 };
 
 startServer();
+
+module.exports = app;
