@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { generateToken } from '../service/authService';
 import { createUser, findUser } from '../service/userService';
 import { Conflict } from '../util/ApiErrors';
 import responseWrapper from '../util/responseWrapper';
@@ -8,5 +9,8 @@ export const registerHandler = async (req: Request<{}, {}, registerType>, res: R
 	const existingUser = await findUser(req.body.email);
 	if (existingUser) throw new Conflict('Ez a felhasználó már létezik');
 	const createdUser = await createUser(req.body);
+	const token = await generateToken(createdUser);
+
+	responseWrapper(res, token);
 	responseWrapper(res);
 };
