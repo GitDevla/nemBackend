@@ -2,9 +2,10 @@
 
 ## Setup
 
+Adatbázis és Ormconfig.json -beállitása
+
 ```
 npm install
-npx prisma db push
 npm run dev
 ```
 
@@ -26,7 +27,7 @@ password
 token
 ```
 
-### POST /user/register
+### POST /user
 
 **Leírás**: felhasználó regisztráció  
 **Request:**
