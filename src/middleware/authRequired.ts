@@ -8,8 +8,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
 	const decoded = await validateToken(token);
 	if (!decoded) throw new Unauthorized('Kérlek jeletkezzbe');
-	console.log(decoded);
 
-	res.locals.user = decoded;
+	res.locals.token = decoded;
 	next();
 };

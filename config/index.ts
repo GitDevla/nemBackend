@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
 import { randomBytes } from 'crypto';
+import { config } from 'dotenv';
 import fs from 'fs';
 import path from 'path/posix';
 config();

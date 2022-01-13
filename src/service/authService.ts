@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from '../../config';
+import { tokenType } from '../model/types/tokenType';
 import { User } from '../model/userModel';
 
 export const generateToken = async (user: User) => {
@@ -10,7 +11,7 @@ export const generateToken = async (user: User) => {
 export const validateToken = async (token: string) => {
 	try {
 		const decodedToken = jwt.verify(token, config.jwt.token);
-		return { decodedToken };
+		return decodedToken as tokenType;
 	} catch (error) {
 		return null;
 	}
