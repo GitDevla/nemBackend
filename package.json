@@ -4,11 +4,10 @@
 	"version": "1.0.0",
 	"private": "true",
 	"scripts": {
-		"dev": "nodemon src/server.ts",
 		"build": "tsc",
-		"serve": "node build/src/server.ts",
-		"serve:ts": "ts-node src/server.ts",
-		"start": "build && run serve "
+		"serve": "NODE_ENV=prod node build/src/server.ts",
+		"serve:dev": "NODE_ENV=dev ts-node src/server.ts",
+		"dev": "NODE_ENV=dev nodemon src/server.ts"
 	},
 	"dependencies": {
 		"bcrypt": "^5.0.1",

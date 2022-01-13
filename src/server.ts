@@ -11,13 +11,7 @@ const app = express();
 
 // Middlewares
 app.use(helmet());
-app.use(
-	cors({
-		origin: ['http://localhost:3000'],
-		methods: ['GET', 'POST', 'PUT', 'REMOVE'],
-		allowedHeaders: ['Content-Type', 'Authorization'],
-	}),
-);
+app.use(cors(config.cors));
 app.use(compression());
 app.use(express.json());
 
@@ -28,7 +22,7 @@ app.use(routes);
 app.use(ErrorHandler);
 
 const startServer = async () => {
-	const db = createConnection();
+	const db = await createConnection(config.db);
 
 	const PORT = config.port;
 	const api = app.listen(PORT, () => {
@@ -37,5 +31,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-module.exports = app;
