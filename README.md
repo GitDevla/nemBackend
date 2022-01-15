@@ -2,11 +2,11 @@
 
 ## Setup
 
-Adatbázis és Ormconfig.json -beállitása
+`.env.dev` bállítása `.env.example` szerint
 
 ```
-npm install
-npm run dev
+yarn || npm install
+yarn server:ts ||npm run dev
 ```
 
 ## Elérhető routok
