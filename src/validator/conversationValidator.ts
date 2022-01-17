@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const conversationRoomCreateSchema = Yup.object({
+export const conversationCreateSchema = Yup.object({
 	name: Yup.string()
 		.typeError('Az névnek stringnek kell lennie')
 		.min(1, 'A névnek minimum 1 karakterből kell állnia')
@@ -11,9 +11,9 @@ export const conversationRoomCreateSchema = Yup.object({
 	).typeError('Az usereknek tömbnek kell lennie'),
 });
 
-export const conversationRoomReadSchema = Yup.object({
+export const conversationReadSchema = Yup.object({
 	id: Yup.number().typeError('Az id-nek számnak kell lennie').required('Üzenet megadása kötelező'),
 });
 
-export type conversationRoomCreateType = Yup.InferType<typeof conversationRoomCreateSchema>;
-export type conversationRoomReadType = Yup.InferType<typeof conversationRoomReadSchema>;
+export type conversationCreateType = Yup.InferType<typeof conversationCreateSchema>;
+export type conversationReadType = Yup.InferType<typeof conversationReadSchema>;

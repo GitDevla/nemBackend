@@ -2,7 +2,7 @@ import { compare, hashSync } from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import config from '../../config';
-import { ConversationRoom } from './conversationRoomModel';
+import { Conversation } from './conversationModel';
 
 @Entity()
 export class User extends BaseEntity {
@@ -19,8 +19,8 @@ export class User extends BaseEntity {
 	@Column({ name: 'password' })
 	private _password: string;
 
-	@ManyToMany(() => ConversationRoom)
-	conversationRooms: ConversationRoom[];
+	@ManyToMany(() => Conversation)
+	conversationRooms: Conversation[];
 
 	async setPassword(plain: string) {
 		this._password = hashSync(plain + config.encryption.papper, config.encryption.rounds);

@@ -11,7 +11,7 @@ import {
 import { User } from './userModel';
 
 @Entity()
-export class ConversationRoom extends BaseEntity {
+export class Conversation extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
