@@ -28,3 +28,10 @@ export const findUserByEmail = async (email: string) => {
 export const findUserById = async (id: number) => {
 	return await User.findOne({ where: { id } });
 };
+
+export const findUsersByIds = async (ids: number[]) => {
+	const users = User.createQueryBuilder()
+		.where('id IN (:ids)', { ids: [...ids] })
+		.getMany();
+	return await users;
+};
