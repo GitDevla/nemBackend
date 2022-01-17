@@ -5,8 +5,8 @@
 `.env.dev` vagy `.env.prod` bállítása `.env.example` szerint
 
 ```
-yarn || npm install
-yarn server:ts ||npm run dev
+yarn
+yarn serve:dev vagy yarn dev
 ```
 
 ## API Válasz kinézet
