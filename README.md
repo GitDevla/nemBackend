@@ -2,11 +2,38 @@
 
 ## Setup
 
-`.env.dev` bállítása `.env.example` szerint
+`.env.dev` vagy `.env.prod` bállítása `.env.example` szerint
 
 ```
 yarn || npm install
 yarn server:ts ||npm run dev
+```
+
+## API Válasz kinézet
+
+### Jó
+
+status: 200-299
+
+```json
+{
+	"data": {},
+	"success": true
+}
+```
+
+**A további response kinézetnél csak a data objectet írom le**
+
+### Hiba
+
+status: 400-500
+
+```json
+{
+	"errorName": "Általános hiba kód",
+	"details": "Pontos hiba leírás",
+	"success": false
+}
 ```
 
 ## Elérhető routok
@@ -41,5 +68,5 @@ password
 **Response:**
 
 ```json
-statusCode
+token
 ```

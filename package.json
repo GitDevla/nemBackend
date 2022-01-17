@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "tsc",
 		"serve": "NODE_ENV=prod node build/src/server.ts",
+		"serve:prod": "NODE_ENV=prod ts-node src/server.ts",
 		"serve:dev": "NODE_ENV=dev ts-node src/server.ts",
 		"dev": "NODE_ENV=dev nodemon src/server.ts"
 	},
