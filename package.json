@@ -5,10 +5,10 @@
 	"private": "true",
 	"scripts": {
 		"build": "tsc",
-		"serve": "NODE_ENV=prod node build/src/server.ts",
-		"serve:prod": "NODE_ENV=prod ts-node src/server.ts",
-		"serve:dev": "NODE_ENV=dev ts-node src/server.ts",
-		"dev": "NODE_ENV=dev nodemon src/server.ts"
+		"serve": "set NODE_ENV=prod && node build/src/server.ts",
+		"serve:prod": "set NODE_ENV=prod && ts-node src/server.ts",
+		"serve:dev": "set NODE_ENV=dev && ts-node src/server.ts",
+		"dev": "set NODE_ENV=dev && nodemon src/server.ts"
 	},
 	"dependencies": {
 		"bcrypt": "^5.0.1",

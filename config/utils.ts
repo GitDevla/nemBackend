@@ -10,7 +10,9 @@ export function getSecret(filename: string) {
 }
 
 export function generateSecret(filename: string, strength = 32) {
-	const filePath = path.join(__dirname, '/tokens', filename);
+	const dirpath = path.join(__dirname, '/tokens');
+	if (!fs.existsSync(dirpath)) fs.mkdirSync(dirpath);
+	const filePath = path.join(dirpath, filename);
 	const secret = randomBytes(strength).toString('hex');
 	fs.writeFileSync(filePath, secret);
 	return secret;
