@@ -30,8 +30,6 @@ export const findUserById = async (id: number) => {
 };
 
 export const findUsersByIds = async (ids: number[]) => {
-	const users = User.createQueryBuilder()
-		.where('id IN (:ids)', { ids: [...ids] })
-		.getMany();
+	const users = User.createQueryBuilder().where('id IN (:ids)', { ids }).getMany();
 	return await users;
 };

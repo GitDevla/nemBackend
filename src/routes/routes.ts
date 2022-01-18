@@ -7,7 +7,7 @@ const routes = Router();
 
 routes.use('/auth', authRoute);
 routes.use('/user', userRoute);
-routes.use('/conversationRoom', conversationRoute);
+routes.use('/conversation', conversationRoute);
 routes.all('*', () => {
 	throw new NotFound('Nincs ilyen route');
 }); //404

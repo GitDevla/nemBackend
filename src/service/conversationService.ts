@@ -20,6 +20,6 @@ export const getAllConversations = async () => {
 };
 
 export const getConversation = async (id: number) => {
-	const post = await Conversation.findOne({ where: { id }, relations: ['parent'] });
+	const post = await Conversation.findOne({ where: { id }, relations: ['creator'] });
 	return post;
 };

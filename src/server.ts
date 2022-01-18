@@ -4,6 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import { createConnection } from 'typeorm';
 import config from '../config';
+import deserializeUser from './middleware/deserializeUser';
 import ErrorHandler from './middleware/ErrorHandler';
 import routes from './routes/routes';
 
@@ -14,6 +15,7 @@ app.use(helmet());
 app.use(cors(config.cors));
 app.use(compression());
 app.use(express.json());
+app.use(deserializeUser);
 
 // Routes
 app.use(routes);

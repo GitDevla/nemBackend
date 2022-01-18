@@ -14,8 +14,7 @@ export const conversationCreateHandler = async (
 	req: Request<{}, {}, conversationCreateType>,
 	res: Response,
 ) => {
-	const token: tokenType = res.locals.token;
-	console.log(token);
+	const token: tokenType = res.locals.user;
 
 	const user = await findUserById(token.userId);
 	if (!user) throw new NotFound('Ez a felhasználó nem létezik');
