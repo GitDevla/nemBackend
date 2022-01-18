@@ -11,5 +11,5 @@ export const loginHandler = async (req: Request<{}, {}, loginType>, res: Respons
 
 	const token = await generateToken(user);
 
-	responseWrapper(res, token);
+	responseWrapper(res, { ...token, user });
 };
