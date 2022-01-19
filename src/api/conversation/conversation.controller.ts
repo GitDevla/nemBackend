@@ -1,14 +1,10 @@
 import { Request, Response } from 'express';
-import { tokenType } from '../model/types/tokenType';
-import {
-	createConversation,
-	getAllConversations,
-	getConversation,
-} from '../service/conversationService';
-import { findUserById } from '../service/userService';
-import { NotFound } from '../util/ApiErrors';
-import responseWrapper from '../util/responseWrapper';
-import { conversationCreateType, conversationReadType } from '../validator/conversationValidator';
+import { tokenType } from '../../model/types/tokenType';
+import { NotFound } from '../../util/ApiErrors';
+import responseWrapper from '../../util/responseWrapper';
+import { findUserById } from '../user/user.service';
+import { conversationCreateType, conversationReadType } from './conversation.schema';
+import { createConversation, getAllConversations, getConversation } from './conversation.service';
 
 export const conversationCreateHandler = async (
 	req: Request<{}, {}, conversationCreateType>,

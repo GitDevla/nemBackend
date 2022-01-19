@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { generateToken } from '../service/authService';
-import { validatePassword } from '../service/userService';
-import { InvalidParameter } from '../util/ApiErrors';
-import responseWrapper from '../util/responseWrapper';
-import { loginType } from '../validator/authValidator';
+import { InvalidParameter } from '../../util/ApiErrors';
+import responseWrapper from '../../util/responseWrapper';
+import { validatePassword } from '../user/user.service';
+import { loginType } from './auth.schema';
+import { generateToken } from './auth.service';
 
 export const loginHandler = async (req: Request<{}, {}, loginType>, res: Response) => {
 	const user = await validatePassword(req.body);

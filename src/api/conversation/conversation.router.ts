@@ -1,12 +1,12 @@
 import { Router } from 'express';
+import authRequired from '../../middleware/requireUser';
+import validateSchema from '../../middleware/schemaValidator';
 import {
 	conversationCreateHandler,
 	conversationReadHandler,
 	conversationsReadHandler,
-} from '../controller/conversationController';
-import authRequired from '../middleware/requireUser';
-import validateSchema from '../middleware/schemaValidator';
-import { conversationCreateSchema } from '../validator/conversationValidator';
+} from './conversation.controller';
+import { conversationCreateSchema } from './conversation.schema';
 const conversationRoute = Router();
 
 conversationRoute.post(

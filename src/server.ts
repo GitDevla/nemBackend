@@ -1,12 +1,12 @@
+import config from '@config';
 import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import { createConnection } from 'typeorm';
-import config from '../config';
+import routes from './api/routes';
 import deserializeUser from './middleware/deserializeUser';
 import ErrorHandler from './middleware/ErrorHandler';
-import routes from './routes/routes';
 
 const app = express();
 

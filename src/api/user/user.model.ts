@@ -1,8 +1,8 @@
+import config from '@config';
 import { compare, hashSync } from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import config from '../../config';
-import { Conversation } from './conversationModel';
+import { Conversation } from '../conversation/conversation.model';
 
 @Entity()
 export class User extends BaseEntity {

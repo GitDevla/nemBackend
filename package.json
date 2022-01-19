@@ -10,6 +10,9 @@
 		"serve:dev": "cross-env NODE_ENV=dev ts-node src/server.ts",
 		"dev": "cross-env NODE_ENV=dev nodemon src/server.ts"
 	},
+	"_moduleAliases": {
+		"@config": ""
+	},
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"class-transformer": "^0.5.1",
@@ -33,6 +36,7 @@
 		"cross-env": "^7.0.3",
 		"nodemon": "^2.0.15",
 		"ts-node": "^10.4.0",
+		"tsconfig-paths": "^3.12.0",
 		"typescript": "^4.5.4"
 	}
 }

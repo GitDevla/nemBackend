@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { generateToken } from '../service/authService';
-import { createUser, findUserByEmail } from '../service/userService';
-import { Conflict } from '../util/ApiErrors';
-import responseWrapper from '../util/responseWrapper';
-import { registerType } from '../validator/userValidator';
+import { Conflict } from '../../util/ApiErrors';
+import responseWrapper from '../../util/responseWrapper';
+import { generateToken } from '../auth/auth.service';
+import { registerType } from './user.schema';
+import { createUser, findUserByEmail } from './user.service';
 
 export const registerHandler = async (req: Request<{}, {}, registerType>, res: Response) => {
 	const existingUser = await findUserByEmail(req.body.email);

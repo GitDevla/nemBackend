@@ -9,8 +9,8 @@ import {
 	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Message } from './messageModel';
-import { User } from './userModel';
+import { Message } from '../message/message.model';
+import { User } from '../user/user.model';
 
 @Entity()
 export class Conversation extends BaseEntity {

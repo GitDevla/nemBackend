@@ -12,6 +12,14 @@
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"strictPropertyInitialization": false,
-		"skipLibCheck": true
-	}
+		"skipLibCheck": true,
+		"baseUrl": "./",
+		"paths": {
+			"@config": ["config/index.ts"]
+		}
+	},
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	},
+	"include": ["./src"]
 }

@@ -1,7 +1,7 @@
-import { Conversation } from '../model/conversationModel';
-import { User } from '../model/userModel';
-import { conversationCreateType } from '../validator/conversationValidator';
-import { findUsersByIds } from './userService';
+import { User } from '../user/user.model';
+import { findUsersByIds } from '../user/user.service';
+import { Conversation } from './conversation.model';
+import { conversationCreateType } from './conversation.schema';
 
 export const createConversation = async (user: User, createData: conversationCreateType) => {
 	const room = new Conversation();

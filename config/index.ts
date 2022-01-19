@@ -14,7 +14,7 @@ export default {
 		type: 'mysql',
 		url: process.env.DB_URL,
 		synchronize: !isProduction,
-		entities: ['src/model/**/*.ts'],
+		entities: ['src/api/**/*.model.ts'],
 	},
 
 	cors: <CorsOptions>{

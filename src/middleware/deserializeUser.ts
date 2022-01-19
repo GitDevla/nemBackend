@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { validateToken } from '../service/authService';
+import { validateToken } from '../api/auth/auth.service';
 
 export default async (req: Request, res: Response, next: NextFunction) => {
 	const accessToken = req.body.token;

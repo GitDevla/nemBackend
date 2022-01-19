@@ -1,6 +1,6 @@
-import { User } from '../model/userModel';
-import { loginType } from '../validator/authValidator';
-import { registerType } from '../validator/userValidator';
+import { loginType } from '../auth/auth.schema';
+import { User } from './user.model';
+import { registerType } from './user.schema';
 
 export const validatePassword = async (data: loginType) => {
 	const user = await findUserByEmail(data.email);

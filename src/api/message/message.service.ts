@@ -1,7 +1,7 @@
-import { Conversation } from '../model/conversationModel';
-import { Message } from '../model/messageModel';
-import { User } from '../model/userModel';
-import { messageCreateType } from '../validator/messageValidator';
+import { Conversation } from '../conversation/conversation.model';
+import { User } from '../user/user.model';
+import { Message } from './message.model';
+import { messageCreateType } from './message.schema';
 
 export const createMessage = async (input: messageCreateType, user: User, conv: Conversation) => {
 	const message = new Message();

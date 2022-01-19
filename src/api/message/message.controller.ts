@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { tokenType } from '../model/types/tokenType';
-import { getConversation } from '../service/conversationService';
-import { createMessage } from '../service/messageService';
-import { findUserById } from '../service/userService';
-import { NotFound } from '../util/ApiErrors';
-import responseWrapper from '../util/responseWrapper';
-import { messageCreateType } from '../validator/messageValidator';
+import { tokenType } from '../../model/types/tokenType';
+import { NotFound } from '../../util/ApiErrors';
+import responseWrapper from '../../util/responseWrapper';
+import { getConversation } from '../conversation/conversation.service';
+import { findUserById } from '../user/user.service';
+import { messageCreateType } from './message.schema';
+import { createMessage } from './message.service';
 
 export const messageCreateHandler = async (
 	req: Request<{}, {}, messageCreateType>,

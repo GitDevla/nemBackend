@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { NotFound } from '../util/ApiErrors';
-import authRoute from './authRouter';
-import conversationRoute from './conversationRouter';
-import messageRoute from './messageRouter';
-import userRoute from './userRouter';
+import authRoute from './auth/auth.router';
+import conversationRoute from './conversation/conversation.router';
+import messageRoute from './message/message.router';
+import userRoute from './user/user.router';
 const routes = Router();
 
 routes.use('/auth', authRoute);
