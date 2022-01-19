@@ -23,13 +23,9 @@ app.use(routes);
 // Error Handlers
 app.use(ErrorHandler);
 
-const startServer = async () => {
+const PORT = config.port;
+const api = app.listen(PORT, async () => {
 	const db = await createConnection(config.db);
 
-	const PORT = config.port;
-	const api = app.listen(PORT, () => {
-		console.log('Server running on http://localhost:' + PORT);
-	});
-};
-
-startServer();
+	console.log('Server running on http://localhost:' + PORT);
+});

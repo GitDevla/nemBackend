@@ -10,6 +10,7 @@ export const createConversation = async (user: User, createData: conversationCre
 	let users;
 	if (createData.users) users = await findUsersByIds(createData.users);
 	room.users = users || [];
+	room.messages = [];
 	await room.save();
 	return room;
 };
@@ -20,6 +21,9 @@ export const getAllConversations = async () => {
 };
 
 export const getConversation = async (id: number) => {
-	const post = await Conversation.findOne({ where: { id }, relations: ['creator'] });
+	const post = await Conversation.findOne({
+		where: { id },
+		relations: ['creator', 'users', 'messages'],
+	});
 	return post;
 };

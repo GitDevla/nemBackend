@@ -12,14 +12,14 @@ export class InvalidParameter extends APIError {
 	name: string = 'INVALID_PARAMETER';
 }
 
-export class NotFound extends APIError {
-	statusCode: number = 404;
-	name: string = 'NOT_FOUND';
-}
-
 export class Unauthorized extends APIError {
 	statusCode: number = 403;
 	name: string = 'UNAUTHORIZED';
+}
+
+export class NotFound extends APIError {
+	statusCode: number = 404;
+	name: string = 'NOT_FOUND';
 }
 
 export class Conflict extends APIError {

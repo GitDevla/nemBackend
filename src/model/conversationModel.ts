@@ -6,8 +6,10 @@ import {
 	JoinTable,
 	ManyToMany,
 	ManyToOne,
+	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Message } from './messageModel';
 import { User } from './userModel';
 
 @Entity()
@@ -25,4 +27,8 @@ export class Conversation extends BaseEntity {
 	@ManyToMany(() => User)
 	@JoinTable()
 	users: User[];
+
+	@OneToMany(() => Message, (m) => m.room)
+	@JoinColumn()
+	messages: Message[];
 }
