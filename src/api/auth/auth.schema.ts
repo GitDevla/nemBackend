@@ -1,13 +1,15 @@
-import * as Yup from 'yup';
+import { InferType, object, string } from 'yup';
 
-export const AuthSchema = Yup.object({
-	email: Yup.string()
+export const body = object().shape({
+	email: string()
 		.typeError('Az emailnek stringnek kell lennie')
 		.required('Email megadása kötelező')
 		.lowercase(),
-	password: Yup.string()
+	password: string()
 		.typeError('A jelszónak stringnek kell lennie')
 		.required('Jelszó megadása kötelező'),
 });
 
-export type AuthType = Yup.InferType<typeof AuthSchema>;
+export const AuthSchema = object({ body });
+
+export type AuthType = InferType<typeof AuthSchema>;

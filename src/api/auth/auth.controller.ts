@@ -5,7 +5,9 @@ import { validatePassword } from '../user/user.service';
 import { AuthType } from './auth.schema';
 import { generateToken } from './auth.service';
 
-export const authHandler = async (req: Request<{}, {}, AuthType>, res: Response) => {
+export const authHandler = async (req: Request<{}, {}, AuthType['body']>, res: Response) => {
+	console.log(req.body);
+
 	const user = await validatePassword(req.body);
 	if (!user) throw new InvalidParameter('Rosz felhasználónév vagy jelszó');
 

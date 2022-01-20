@@ -5,7 +5,10 @@ import { generateToken } from '../auth/auth.service';
 import { CreateUserType } from './user.schema';
 import { createUser, findUserByEmail, getAllUsers } from './user.service';
 
-export const createUserHandler = async (req: Request<{}, {}, CreateUserType>, res: Response) => {
+export const createUserHandler = async (
+	req: Request<{}, {}, CreateUserType['body']>,
+	res: Response,
+) => {
 	const existingUser = await findUserByEmail(req.body.email);
 	if (existingUser) throw new Conflict('Ez a felhasználó már létezik');
 	const createdUser = await createUser(req.body);

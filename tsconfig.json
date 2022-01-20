@@ -16,7 +16,8 @@
 		"baseUrl": "./",
 		"paths": {
 			"@config": ["config/index.ts"]
-		}
+		},
+		"typeRoots": ["./src/types", "./node_modules/@types"]
 	},
 	"ts-node": {
 		"require": ["tsconfig-paths/register"]

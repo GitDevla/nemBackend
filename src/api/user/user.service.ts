@@ -2,7 +2,7 @@ import { AuthType } from '../auth/auth.schema';
 import { User } from './user.model';
 import { CreateUserType } from './user.schema';
 
-export const validatePassword = async (data: AuthType) => {
+export const validatePassword = async (data: AuthType['body']) => {
 	const user = await findUserByEmail(data.email);
 	if (!user) return null;
 	const isValid = await user.validatePassword(data.password);
@@ -11,7 +11,7 @@ export const validatePassword = async (data: AuthType) => {
 	return user;
 };
 
-export const createUser = async (data: CreateUserType) => {
+export const createUser = async (data: CreateUserType['body']) => {
 	const { email, username, password } = data;
 
 	const createdUser = User.create({ email, username });

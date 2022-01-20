@@ -4,7 +4,10 @@ import { findUsersByIds } from '../user/user.service';
 import { Conversation } from './conversation.model';
 import { CreateConversationType } from './conversation.schema';
 
-export const createConversation = async (creator: User, createData: CreateConversationType) => {
+export const createConversation = async (
+	creator: User,
+	createData: CreateConversationType['body'],
+) => {
 	const room = new Conversation();
 	room.name = createData.name;
 	room.creator = creator;

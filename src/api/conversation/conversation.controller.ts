@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { tokenType } from 'src/types/tokenType';
+import { TokenType } from 'src/types/tokenType';
 import { NotFound, Unauthorized } from '../../util/ApiErrors';
 import responseWrapper from '../../util/responseWrapper';
 import { findUserById } from '../user/user.service';
-import { CreateConversationType } from './conversation.schema';
+import { CreateConversationType, ReadConversationType } from './conversation.schema';
 import {
 	createConversation,
 	deleteConversation,
@@ -12,10 +12,10 @@ import {
 } from './conversation.service';
 
 export const createConversationHandler = async (
-	req: Request<{}, {}, CreateConversationType>,
+	req: Request<{}, {}, CreateConversationType['body']>,
 	res: Response,
 ) => {
-	const token: tokenType = res.locals.user;
+	const token: TokenType = res.locals.user;
 
 	const user = await findUserById(token.userId);
 	if (!user) throw new NotFound('Ez a felhasználó nem létezik');
@@ -25,15 +25,16 @@ export const createConversationHandler = async (
 };
 
 export const readConversationsHandler = async (req: Request, res: Response) => {
-	const user: tokenType = res.locals.user;
+	const user: TokenType = res.locals.user;
 	const posts = await getAllConversationsUserHasAccessTo(user.userId);
 	responseWrapper(res, posts);
 };
 
-export const readConversationHandler = async (req: Request, res: Response) => {
-	const user: tokenType = res.locals.user;
-
-	// @ts-ignore //TODODODOD
+export const readConversationHandler = async (
+	req: Request<ReadConversationType['params']>,
+	res: Response,
+) => {
+	const user: TokenType = res.locals.user;
 	const posts = await getConversation(req.params.id);
 	if (posts?.creator.id !== user.userId)
 		throw new Unauthorized('Ezt a chat szobát nem nézheted meg');

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-export type tokenType = {
+export type TokenType = {
 	userId: number;
 } & jwt.JwtPayload;

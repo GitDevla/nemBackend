@@ -19,7 +19,11 @@ conversationRoute.post(
 
 // READ
 conversationRoute.get('/', requireUser, readConversationsHandler);
-conversationRoute.get('/:id', requireUser, readConversationHandler);
+conversationRoute.get(
+	'/:id',
+	[requireUser, validateSchema(CreateConversationSchema)],
+	readConversationHandler,
+);
 
 // DELETE
 conversationRoute.delete('/:id', [requireUser], deleteConversationHandler);
