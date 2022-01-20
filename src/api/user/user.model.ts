@@ -1,7 +1,15 @@
 import config from '@config';
 import { compare, hashSync } from 'bcrypt';
 import { Exclude } from 'class-transformer';
-import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	ManyToMany,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+} from 'typeorm';
 import { Conversation } from '../conversation/conversation.model';
 
 @Entity()
@@ -17,7 +25,13 @@ export class User extends BaseEntity {
 
 	@Exclude()
 	@Column({ name: 'password' })
-	private _password: string;
+	_password: string;
+
+	@CreateDateColumn()
+	createdAt: Date;
+
+	@UpdateDateColumn()
+	updatedAt: Date;
 
 	@ManyToMany(() => Conversation)
 	conversationRooms: Conversation[];
