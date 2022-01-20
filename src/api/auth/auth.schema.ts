@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const loginSchema = Yup.object({
+export const AuthSchema = Yup.object({
 	email: Yup.string()
 		.typeError('Az emailnek stringnek kell lennie')
 		.required('Email megadása kötelező')
@@ -10,4 +10,4 @@ export const loginSchema = Yup.object({
 		.required('Jelszó megadása kötelező'),
 });
 
-export type loginType = Yup.InferType<typeof loginSchema>;
+export type AuthType = Yup.InferType<typeof AuthSchema>;

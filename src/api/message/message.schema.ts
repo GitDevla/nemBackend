@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const messageCreateSchema = Yup.object({
+export const CreateMessageSchema = Yup.object({
 	room: Yup.number()
 		.typeError('Az szobaId-nek számnak kell lennie')
 		.required('SzobaId megadása kötelező'),
@@ -11,4 +11,4 @@ export const messageCreateSchema = Yup.object({
 		.required(),
 });
 
-export type messageCreateType = Yup.InferType<typeof messageCreateSchema>;
+export type CreateMessageType = Yup.InferType<typeof CreateMessageSchema>;

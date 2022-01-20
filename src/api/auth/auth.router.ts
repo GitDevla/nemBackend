@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import validateSchema from '../../middleware/schemaValidator';
-import { loginHandler } from './auth.controller';
-import { loginSchema } from './auth.schema';
+import { authHandler } from './auth.controller';
+import { AuthSchema } from './auth.schema';
 const authRoute = Router();
 
-authRoute.post('/', validateSchema(loginSchema), loginHandler);
+authRoute.post('/', validateSchema(AuthSchema), authHandler);
 
 export default authRoute;

@@ -1,20 +1,27 @@
 import { Router } from 'express';
-import authRequired from '../../middleware/requireUser';
+import { default as authRequired, default as requireUser } from '../../middleware/requireUser';
 import validateSchema from '../../middleware/schemaValidator';
 import {
-	conversationCreateHandler,
-	conversationReadHandler,
-	conversationsReadHandler,
+	createConversationHandler,
+	deleteConversationHandler,
+	readConversationHandler,
+	readConversationsHandler,
 } from './conversation.controller';
-import { conversationCreateSchema } from './conversation.schema';
+import { CreateConversationSchema } from './conversation.schema';
 const conversationRoute = Router();
 
+// CREATE
 conversationRoute.post(
 	'/',
-	[authRequired, validateSchema(conversationCreateSchema)],
-	conversationCreateHandler,
+	[authRequired, validateSchema(CreateConversationSchema)],
+	createConversationHandler,
 );
-conversationRoute.get('/', conversationsReadHandler);
-conversationRoute.get('/:id', conversationReadHandler);
+
+// READ
+conversationRoute.get('/', requireUser, readConversationsHandler);
+conversationRoute.get('/:id', requireUser, readConversationHandler);
+
+// DELETE
+conversationRoute.delete('/:id', [requireUser], deleteConversationHandler);
 
 export default conversationRoute;

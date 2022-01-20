@@ -1,8 +1,8 @@
-import { loginType } from '../auth/auth.schema';
+import { AuthType } from '../auth/auth.schema';
 import { User } from './user.model';
-import { registerType } from './user.schema';
+import { CreateUserType } from './user.schema';
 
-export const validatePassword = async (data: loginType) => {
+export const validatePassword = async (data: AuthType) => {
 	const user = await findUserByEmail(data.email);
 	if (!user) return null;
 	const isValid = await user.validatePassword(data.password);
@@ -11,7 +11,7 @@ export const validatePassword = async (data: loginType) => {
 	return user;
 };
 
-export const createUser = async (data: registerType) => {
+export const createUser = async (data: CreateUserType) => {
 	const { email, username, password } = data;
 
 	const createdUser = User.create({ email, username });
@@ -32,4 +32,8 @@ export const findUserById = async (id: number) => {
 export const findUsersByIds = async (ids: number[]) => {
 	const users = User.createQueryBuilder().where('id IN (:ids)', { ids }).getMany();
 	return await users;
+};
+
+export const getAllUsers = async () => {
+	return await User.find();
 };

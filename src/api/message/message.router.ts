@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import authRequired from '../../middleware/requireUser';
 import validateSchema from '../../middleware/schemaValidator';
-import { messageCreateHandler } from './message.controller';
-import { messageCreateSchema } from './message.schema';
+import { createMessageHandler } from './message.controller';
+import { CreateMessageSchema } from './message.schema';
 const messageRoute = Router();
 
-messageRoute.post('/', [authRequired, validateSchema(messageCreateSchema)], messageCreateHandler);
+messageRoute.post('/', [authRequired, validateSchema(CreateMessageSchema)], createMessageHandler);
 
 export default messageRoute;

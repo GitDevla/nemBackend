@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const registerSchema = Yup.object({
+export const CreateUserSchema = Yup.object({
 	username: Yup.string()
 		.typeError('A felhasználónévnek stringnek kell lennie')
 		.required('Felhasználónév megadása kötelező'),
@@ -16,4 +16,4 @@ export const registerSchema = Yup.object({
 		.required('Jelszó megadása kötelező'),
 });
 
-export type registerType = Yup.InferType<typeof registerSchema>;
+export type CreateUserType = Yup.InferType<typeof CreateUserSchema>;

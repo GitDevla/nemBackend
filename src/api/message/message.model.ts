@@ -7,7 +7,7 @@ export class Message extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => Conversation)
+	@ManyToOne(() => Conversation, (conv) => conv.messages, { onDelete: 'CASCADE' })
 	room: Conversation;
 
 	@ManyToOne(() => User)
