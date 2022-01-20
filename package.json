@@ -4,14 +4,9 @@
 	"version": "1.0.0",
 	"private": "true",
 	"scripts": {
-		"build": "tsc",
-		"serve": "cross-env NODE_ENV=prod node build/src/server.js",
 		"serve:prod": "cross-env NODE_ENV=prod ts-node src/server.ts",
 		"serve:dev": "cross-env NODE_ENV=dev ts-node src/server.ts",
 		"dev": "cross-env NODE_ENV=dev nodemon src/server.ts"
-	},
-	"_moduleAliases": {
-		"@config": ""
 	},
 	"dependencies": {
 		"bcrypt": "^5.0.1",

@@ -22,7 +22,7 @@ export class Conversation extends BaseEntity {
 
 	@ManyToOne(() => User)
 	@JoinColumn()
-	creator: User;
+	owner: User;
 
 	@ManyToMany(() => User)
 	@JoinTable()

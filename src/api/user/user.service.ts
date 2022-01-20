@@ -17,9 +17,9 @@ export const createUser = async (data: CreateUserType['body']) => {
 
 	const createdUser = User.create({ email, username });
 	createdUser.setPassword(password);
-	createdUser.save();
+	const dbUser = createdUser.save();
 
-	return createdUser;
+	return dbUser;
 };
 
 export const findUserByEmail = async (email: string) => {

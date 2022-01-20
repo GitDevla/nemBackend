@@ -3,12 +3,18 @@ import { TokenType } from 'src/types/tokenType';
 import { NotFound, Unauthorized } from '../../util/ApiErrors';
 import responseWrapper from '../../util/responseWrapper';
 import { findUserById } from '../user/user.service';
-import { CreateConversationType, ReadConversationType } from './conversation.schema';
+import {
+	CreateConversationType,
+	DeleteConversationType,
+	ReadConversationType,
+	UpdateConversationType,
+} from './conversation.schema';
 import {
 	createConversation,
 	deleteConversation,
-	getAllConversationsUserHasAccessTo,
+	getAllConversations,
 	getConversation,
+	updateConversation,
 } from './conversation.service';
 
 export const createConversationHandler = async (
@@ -25,25 +31,53 @@ export const createConversationHandler = async (
 };
 
 export const readConversationsHandler = async (req: Request, res: Response) => {
-	const user: TokenType = res.locals.user;
-	const posts = await getAllConversationsUserHasAccessTo(user.userId);
-	responseWrapper(res, posts);
+	const requestUser: TokenType = res.locals.user;
+	const rooms = await getAllConversations();
+	const roomsUserIsPartOf = rooms.filter((room) =>
+		room.users.some((user) => user.id == requestUser.userId),
+	);
+	const filtered = roomsUserIsPartOf.map(({ id, name }) => ({ id, name }));
+	responseWrapper(res, filtered);
 };
 
 export const readConversationHandler = async (
 	req: Request<ReadConversationType['params']>,
 	res: Response,
 ) => {
-	const user: TokenType = res.locals.user;
-	const posts = await getConversation(req.params.id);
-	if (posts?.creator.id !== user.userId)
+	const requestUser: TokenType = res.locals.user;
+	const room = await getConversation(req.params.id);
+	if (!room) throw new NotFound('Ez a szoba nem létezik');
+	if (!room.users.some((user) => user.id == requestUser.userId))
 		throw new Unauthorized('Ezt a chat szobát nem nézheted meg');
-	responseWrapper(res, posts);
+	responseWrapper(res, room);
 };
 
-export const deleteConversationHandler = async (req: Request, res: Response) => {
-	// @ts-ignore //TODODODOD
-	const success = await deleteConversation(req.params.id);
+export const deleteConversationHandler = async (
+	req: Request<DeleteConversationType['params']>,
+	res: Response,
+) => {
+	const token: TokenType = res.locals.user;
+	const room = await getConversation(req.params.id);
+	if (!room) throw new NotFound('Ez a szoba nem létezik');
+	if (room.owner.id != token.userId)
+		throw new Unauthorized('Ennek a szobának nem te vagy a tulajdonosa');
+
+	await deleteConversation(room);
 
 	responseWrapper(res);
+};
+
+export const updateConversationHandler = async (
+	req: Request<UpdateConversationType['params'], {}, UpdateConversationType['body']>,
+	res: Response,
+) => {
+	const token: TokenType = res.locals.user;
+	const room = await getConversation(req.params.id);
+	if (!room) throw new NotFound('Ez a szoba nem létezik');
+	if (room.owner.id != token.userId)
+		throw new Unauthorized('Ennek a szobának nem te vagy a tulajdonosa');
+
+	const updated = await updateConversation(room, req.body);
+
+	responseWrapper(res, updated);
 };

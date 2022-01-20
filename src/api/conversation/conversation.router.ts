@@ -1,31 +1,35 @@
 import { Router } from 'express';
-import { default as authRequired, default as requireUser } from '../../middleware/requireUser';
 import validateSchema from '../../middleware/schemaValidator';
 import {
 	createConversationHandler,
 	deleteConversationHandler,
 	readConversationHandler,
 	readConversationsHandler,
+	updateConversationHandler,
 } from './conversation.controller';
-import { CreateConversationSchema } from './conversation.schema';
+import {
+	CreateConversationSchema,
+	DeleteConversationSchema,
+	ReadConversationSchema,
+	UpdateConversationSchema,
+} from './conversation.schema';
 const conversationRoute = Router();
 
 // CREATE
-conversationRoute.post(
-	'/',
-	[authRequired, validateSchema(CreateConversationSchema)],
-	createConversationHandler,
-);
+conversationRoute.post('/', validateSchema(CreateConversationSchema), createConversationHandler);
 
 // READ
-conversationRoute.get('/', requireUser, readConversationsHandler);
-conversationRoute.get(
-	'/:id',
-	[requireUser, validateSchema(CreateConversationSchema)],
-	readConversationHandler,
-);
+conversationRoute.get('/', readConversationsHandler);
+conversationRoute.get('/:id', validateSchema(ReadConversationSchema), readConversationHandler);
+
+// Update
+conversationRoute.put('/:id', validateSchema(UpdateConversationSchema), updateConversationHandler);
 
 // DELETE
-conversationRoute.delete('/:id', [requireUser], deleteConversationHandler);
+conversationRoute.delete(
+	'/:id',
+	validateSchema(DeleteConversationSchema),
+	deleteConversationHandler,
+);
 
 export default conversationRoute;

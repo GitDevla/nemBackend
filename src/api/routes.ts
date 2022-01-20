@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import requireUser from 'src/middleware/requireUser';
 import { NotFound } from '../util/ApiErrors';
 import authRoute from './auth/auth.router';
 import conversationRoute from './conversation/conversation.router';
@@ -8,7 +9,7 @@ const routes = Router();
 
 routes.use('/auth', authRoute);
 routes.use('/user', userRoute);
-routes.use('/conversation', conversationRoute);
+routes.use('/conversation', requireUser, conversationRoute);
 routes.use('/message', messageRoute);
 routes.all('*', () => {
 	throw new NotFound('Nincs ilyen route');
