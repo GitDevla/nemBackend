@@ -12,7 +12,7 @@ const app = express();
 
 // Middlewares
 app.use(helmet());
-app.use(cors(config.cors));
+app.use(cors());
 app.use(compression());
 app.use(express.json());
 app.use(deserializeUser);
