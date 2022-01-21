@@ -7,15 +7,20 @@ import {
 	CreateDateColumn,
 	Entity,
 	ManyToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
 import { Conversation } from '../conversation/conversation.model';
+import { Profile } from '../profile/profile.model';
 
 @Entity()
 export class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
+
+	@OneToOne(() => Profile, (ui) => ui.owner)
+	profile: Profile;
 
 	@Column()
 	username: string;
